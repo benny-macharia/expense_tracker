@@ -1,21 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 {% extends 'expenses/base.html' %}
 
 {% block content %}
 
-  <h2>Login</h2>
-  <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
+<div class="flex items-center justify-center py-12 px-4">
+  <div class="max-w-md w-96 bg-white rounded-lg shadow-md p-24 flex items-center justify-center mt-24">
+
+    <form method="POST" class="py-12 items-center justify-center">
+      {% csrf_token %}
+        <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
+      <div class="mb-4">
+        <label for="{{ form.username.id_for_label }}" class="block text-gray-700 font-medium mb-2">Username</label>
+        {{ form.username }}
+      </div>
+
+      <div class="mb-4">
+        <label for="{{ form.password.id_for_label }}" class="block text-gray-700 font-medium mb-2">Password</label>
+        {{ form.password }}
+      </div>
+
+      <button type="submit" class="w-64 bg-black hover:bg-gray-400 text-white font-bold py-2 px-4 rounded-full">Login</button>
+   </form>
+  </div>
+</div>
 
 {% endblock %}
-</body>
-</html>

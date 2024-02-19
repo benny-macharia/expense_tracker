@@ -1,15 +1,30 @@
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% tailwind_css %}
 </head>
-<body>
-<h2>Register</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Register</button>
-</form>
+<body class="flex justify-center items-center h-screen">
+    <div class="bg-white p-8 rounded shadow-md w-96">
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div class="mb-4"> <label for="{{ field.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
+                        {{ field.label }}:
+                    </label>
+                    {{ field }}  {% if field.help_text %}
+                        <small class="text-gray-500">{{ field.help_text }}</small>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="bg-black hover:bg-gray-400 text-white font-bold py-2 px-4 rounded">
+                Register
+            </button>
+        </form>
+    </div>
 </body>
 </html>

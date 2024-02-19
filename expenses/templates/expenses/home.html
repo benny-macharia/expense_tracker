@@ -1,0 +1,48 @@
+{% extends 'expenses/base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+
+<div class="container mx-auto mt-10 mb-24 space-y-9 bg-gradient-to-br from-indigo-50 to-purple-100">
+    <div class="balance-section text-center">
+        <h2 class="font-semibold">Your total balance</h2>
+        <p class="text-4xl font-bold">Ksh. {{ bank_balance }}</p>
+    </div>
+    <div class="stats-section box-border mt-10 space-y-9">
+    <div class="container mx-auto px-4">  <h2 class="text-center font-bold text-2xl mb-6">Your Financial Snapshot</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 py-7">
+            <div class="stat-block text-center rounded-lg p-6">
+                <h3 class="font-semibold mb-2">This Month's Expense</h3>
+                <p class="text-3xl font-bold text-purple-600">Ksh.{{ monthly_spend }}</p>
+            </div>
+
+            <div class="stat-block text-center rounded-lg p-6 mt-2">
+                <h3 class="font-semibold mb-2">Top Expense</h3>
+                <p class="mb-2">{{ top_expense.description }}</p>
+                <p class="text-3xl font-bold text-purple-600">Ksh.{{ top_expense.amount }}</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+    <div class="category-section flex flex-row space-x-16 justify-center mt-16">
+        <div onclick="window.location.href='/expenses/list/?category=Shopping'" class="category-box box-border shadow-md h-64 w-64 flex flex-col items-center justify-center">
+            <h2>Shopping</h2>
+            <img src="{% static 'images/shopping-bag-svgrepo-com.svg' %}" alt="Shopping" class="w-24 h-24">
+        </div>
+        <div onclick="window.location.href='/expenses/list/?category=Food'" class="category-box box-border shadow-md h-64 w-64 flex flex-col items-center justify-center">
+            <h2>Food</h2>
+            <img src="{% static 'images/pizza-svgrepo-com.svg' %}" alt="Food" class="w-24 h-24">
+        </div>
+        <div onclick="window.location.href='/expenses/list/?category=others'" class="category-box box-border shadow-md h-64 w-64 flex flex-col items-center justify-center">
+            <h2>Others</h2>
+            <img src="{% static 'images/gift-svgrepo-com.svg' %}" alt="Others" class="w-24 h-24">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

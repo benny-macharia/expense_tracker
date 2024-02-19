@@ -15,11 +15,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.shortcuts import redirect
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 
+
+def redirect_to_expenses(request):
+    return redirect('/expenses/signup/')
+
+
 urlpatterns = [
+    path('', redirect_to_expenses, name='redirect_to_expenses'),
     path('expenses/', include('expenses.urls')),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('admin/', admin.site.urls),
+    path("__reload__/", include("django_browser_reload.urls"))
 ]

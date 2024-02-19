@@ -1,20 +1,38 @@
 {% extends 'expenses/base.html' %}
 
-
-
-
 {% block content %}
-<h1>Expense List</h1>
 
-<ul>
-  {% for expense in expenses %}
-    <li>
-      <p>Date: {{ expense.date }}</p>
-      <p>Description: {{ expense.description }}</p>
-      <p>Category: {{ expense.category }}</p>
-      <p>Amount: {{ expense.amount }}</p>
-    </li>
-  {% endfor %}
-</ul>
+<div class="container mx-auto p-6 mt-10">
+    <h1 class="text-3xl font-bold mb-4">Expense List</h1>
+
+    <form method="get" class="flex flex-row md:flex-row items-center justify-center space-x-4 mb-4">
+        <select name="category" class="bg-gray-100 border border-gray-300 rounded px-3 py-2 mr-2 mb-2 md:mb-0">
+       <option value="">All</option>
+       {% for category in categories %}
+           <option value="{{ category.name }}">{{ category.name }}</option>
+       {% endfor %}
+    </select>
+
+    <select name="date" class="bg-gray-100 border border-gray-300 rounded px-3 py-2 mr-2 mb-2 md:mb-0">
+        <option value="latest">Latest</option>
+        <option value="earliest">Earliest</option>
+        <option value="this_week">This Week</option>
+        <option value="this_month">This Month</option>
+    </select>
+        <input type="submit" value="Sort" class="bg-black hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">
+    </form>
+
+    <ul class="list-disc ml-5">
+      {% for expense in expenses %}
+        <li class="border border-gray-300 rounded p-4 mb-3">
+          <p class="font-medium">Date: {{ expense.date }}</p>
+          <p>Description: {{ expense.description }}</p>
+          <p>Category: {{ expense.category }}</p>
+          <p>Amount: {{ expense.amount }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+</div>
+
 {% endblock %}
-```
+

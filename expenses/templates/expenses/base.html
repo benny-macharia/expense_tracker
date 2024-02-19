@@ -1,16 +1,27 @@
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% tailwind_css %}
 </head>
 <body>
-{% if user.is_authenticated %}
-  <a href="{% url 'logout' %}">Logout</a>
-{% else %}
-  <a href="{% url 'login' %}">Login</a>
-  <a href="{% url 'register' %}">Register</a>
-{% endif %}
+<nav class="shadow py-8 px-6 flex justify-end items-center space-x-4">
+    {% if user.is_authenticated %}
+        <div class="space-x-4">
+            <a class="nav-link bg-black text-white hover:bg-blue-500 px-4 py-2 rounded" href="{% url 'home' %}">Home</a>
+            <a class="nav-link bg-black text-white hover:bg-blue-500 px-4 py-2 rounded" href="{% url 'add_expense' %}">Add expenses</a>
+            <a class="nav-link bg-black text-white hover:bg-blue-500 px-4 py-2 rounded" href="{% url 'list_expenses' %}">Expenses</a>
+            <a class="nav-link bg-black text-white hover:bg-blue-500 px-4 py-2 rounded" href="{% url 'signup' %}">Logout</a>
+        </div>
+    {% else %}
+        <div class="space-x-4">
+            <a class="nav-link bg-black text-white hover:bg-blue-500 px-2 py-1 rounded" href="{% url 'login' %}">Login</a>
+            <a class="nav-link bg-black text-white hover:bg-blue-500 px-2 py-1 rounded" href="{% url 'register' %}">Register</a>
+        </div>
+    {% endif %}
+</nav>
 {% block content %}
 {% endblock %}
 </body>

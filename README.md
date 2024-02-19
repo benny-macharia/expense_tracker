@@ -1,2 +1,3 @@
 ##Django Expenses Tracker##
-A Django expense tracker, designed with django-tailwind. 
+
+-A Django expense tracker, designed with django-tailwind. 
